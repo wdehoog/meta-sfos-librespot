@@ -39,3 +39,19 @@ build it
   cd build
   bitbake my-image
 ```
+
+### Librespot recipe
+
+The librespot recipe is made using cargo-bitbake. 
+```
+  git clone https://github.com/librespot-org/librespot.git
+  cd librespot
+  cargo install cargo-bitbake
+  cargo bitbake 
+```
+
+Add flags to the new recipe
+```
+    DEPENDS += "alsa-lib pulseaudio"
+    CARGO_BUILD_FLAGS += '--features "pulseaudio-backend"'
+```
