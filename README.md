@@ -52,6 +52,6 @@ The librespot recipe is made using cargo-bitbake.
 
 Add flags to the new recipe
 ```
-    DEPENDS += "alsa-lib pulseaudio"
-    CARGO_BUILD_FLAGS += '--features "pulseaudio-backend"'
+  DEPENDS += "alsa-lib pulseaudio"
+  CARGO_BUILD_FLAGS += '--features "pulseaudio-backend"'
 ```
