@@ -17,6 +17,12 @@ PV_append = ".AUTOINC+551daadc44"
 DEPENDS += "alsa-lib pulseaudio"
 CARGO_BUILD_FLAGS += '--features "pulseaudio-backend"'
 
+# delete the Cargo.lock file so we can override some crates
+do_unpack_extra(){
+    rm ${WORKDIR}/git/Cargo.lock
+}
+addtask unpack_extra after do_unpack before do_patch
+
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
 SRC_URI += " \
@@ -34,7 +40,7 @@ SRC_URI += " \
     crate://crates.io/arc-swap/0.3.11 \
     crate://crates.io/arrayvec/0.4.11 \
     crate://crates.io/atty/0.2.13 \
-    crate://crates.io/autocfg/0.1.5 \
+    crate://crates.io/autocfg/0.1.7 \
     crate://crates.io/backtrace-sys/0.1.31 \
     crate://crates.io/backtrace/0.3.33 \
     crate://crates.io/base64/0.10.1 \
