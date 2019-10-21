@@ -251,15 +251,16 @@ CONF_VERSION = "1"
 
 PREFERRED_PROVIDER_virtual/kernel = "linux-dummy"
 
-PREFERRED_VERSION_cargo-native = "1.36.0"
-PREFERRED_VERSION_rust-native = "1.36.0"
-PREFERRED_VERSION_rust-llvm-native = "1.36.0"
-PREFERRED_VERSION_rust-cross-native = "1.36.0"
-PREFERRED_VERSION_libstd-rs-native = "1.36.0"
-PREFERRED_VERSION_cargo = "1.36.0"
-PREFERRED_VERSION_rust = "1.36.0"
-PREFERRED_VERSION_rust-llvm = "1.36.0"
-PREFERRED_VERSION_rust-cross = "1.36.0"
-PREFERRED_VERSION_libstd-rs = "1.36.0"
+#PREFERRED_VERSION_cargo-native = "1.36.0"
+#PREFERRED_VERSION_rust-native = "1.36.0"
+#PREFERRED_VERSION_rust-llvm-native = "1.36.0"
+#PREFERRED_VERSION_rust-cross-native = "1.36.0"
+#PREFERRED_VERSION_libstd-rs-native = "1.36.0"
+#PREFERRED_VERSION_cargo = "1.36.0"
+#PREFERRED_VERSION_rust = "1.36.0"
+#PREFERRED_VERSION_rust-llvm = "1.36.0"
+#PREFERRED_VERSION_rust-cross = "1.36.0"
+#PREFERRED_VERSION_libstd-rs = "1.36.0"
 
-
+# building rust with multiple cores will bring your machine to it's knees
+PARALLEL_MAKE = "-j 1"
