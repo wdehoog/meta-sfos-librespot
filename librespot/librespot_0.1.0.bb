@@ -317,3 +317,27 @@ LICENSE = "MIT"
 # what cargo-bitbake generates.
 include librespot-${PV}.inc
 include librespot.inc
+
+
+# install sfos stuff
+
+FILESEXTRAPATHS_append := ":${THISDIR}/sfos"
+
+SRC_URI += " \
+  file://etc/default/librespot \
+  file://etc/systemd/user/librespot.service \
+  file://etc/pulse/xpolicy.conf.d/librespot.conf \
+"
+
+do_install_append() {
+  install -Dm 0644 ${WORKDIR}/etc/default/librespot ${D}${sysconfdir}/default/librespot
+  install -Dm 0644 ${WORKDIR}/etc/systemd/user/librespot.service ${D}${sysconfdir}/systemd/user/librespot.service
+  install -Dm 0644 ${WORKDIR}/etc/pulse/xpolicy.conf.d/librespot.conf ${D}${sysconfdir}/pulse/xpolicy.conf.d/librespot.conf
+}
+
+pkg_postinst_librespot () {
+#!/bin/sh -e
+systemctl-user daemon-reload || true
+systemctl-user enable librespot || true
+systemctl-user try-restart pulseaudio || true
+}

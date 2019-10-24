@@ -1,0 +1,27 @@
+[Unit]
+Description=Librespot
+# for start at boot you might want:
+# After=user-session.target network.target pulseaudio.service
+After=network.target
+
+[Service]
+#Restart=always
+#RestartSec=10
+ExecStartPre=/bin/mkdir -m 0755 -p /home/nemo/.cache/librespot 
+Environment="DEVICE_NAME=Librespot (%H)"
+Environment="BITRATE_ARGS=--bitrate 160"
+Environment="CACHE_ARGS=--disable-audio-cache"
+Environment="VOLUME_ARGS=--enable-volume-normalisation --linear-volume --initial-volume=100"
+Environment="BACKEND_ARGS=--backend pulseaudio"
+Environment="DEVICE_TYPE_ARGS=--device-type smartphone"
+EnvironmentFile=-/etc/default/librespot
+ExecStart=/usr/bin/librespot --name ${DEVICE_NAME} $BACKEND_ARGS $BITRATE_ARGS $CACHE_ARGS $VOLUME_ARGS $DEVICE_TYPE_ARGS $OPTIONS
+
+# uncomment to have librespot start at boot and run
+#   systemctl --user disable librespot
+#   systemctl --user enable librespot
+# in order for systemd to handle the dependencies
+# Unfortunately boot will fail probably since there is no network device.
+#[Install]
+#WantedBy=post-user-session.target
+
